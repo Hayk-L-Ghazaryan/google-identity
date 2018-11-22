@@ -13,6 +13,7 @@
         style="display: none; margin-left: 25px">Revoke access</button>
 
 <div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
+<div id="auth-name" style="display: inline; padding-left: 25px"></div><hr>
 
 <script>
   var GoogleAuth;
@@ -79,11 +80,15 @@
       $('#revoke-access-button').css('display', 'inline-block');
       $('#auth-status').html('You are currently signed in and have granted ' +
           'access to this app.');
+      
+      var basicProfile = user.getBasicProfile();
+      $('#auth-name').html(basicProfile.getName());
     } else {
       $('#sign-in-or-out-button').html('Sign In/Authorize');
       $('#revoke-access-button').css('display', 'none');
       $('#auth-status').html('You have not authorized this app or you are ' +
           'signed out.');
+      $('#auth-name').html('N/A');
     }
   }
 
